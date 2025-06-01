@@ -1,18 +1,29 @@
-import { BellRing, LogOut, MessageCircleMore } from "lucide-react";
+import { BellRing, History, LogOut } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="h-[60px] shadow-2xl border-b-2 flex items-center justify-end">
+    <div className="h-[60px] shadow-2xl border-b-1 flex items-center justify-end">
       <div className="flex gap-10 mr-10">
         <div className="flex gap-3">
-          <div className="bg-[#D5E5F3] p-2.5 cursor-pointer rounded-lg">
-            <BellRing className="text-[#2D9CDB]" />
+          <div
+            title="Notification"
+            className="bg-[#D5E5F3] p-2.5 cursor-pointer rounded-lg group"
+          >
+            <BellRing className="text-[#2D9CDB] group-hover:text-blue-300 duration-300" />
           </div>
-          <div className="bg-[#D5E5F3] p-2.5 cursor-pointer rounded-lg">
-            <MessageCircleMore className="text-[#2D9CDB]" />
-          </div>
-          <div className="bg-[#F5DCE0] p-2.5 cursor-pointer rounded-lg">
-            <LogOut className="text-[#FF5B5B]" />
+          <Link
+            to={"/transaction-history"}
+            title="Transaction history"
+            className="bg-[#D5E5F3] p-2.5 cursor-pointer rounded-lg group"
+          >
+            <History className="text-[#2D9CDB] group-hover:text-blue-300 duration-300" />
+          </Link>
+          <div
+            title="Log out"
+            className="bg-[#F5DCE0] p-2.5 cursor-pointer rounded-lg group"
+          >
+            <LogOut className="text-[#FF5B5B] group-hover:text-red-300 duration-300" />
           </div>
         </div>
         <div className="w-[1px] my-2 bg-black"></div>

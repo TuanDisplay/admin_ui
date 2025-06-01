@@ -3,6 +3,7 @@ import Dashboard from "~/pages/Dashboard";
 import ExpertManagement from "~/pages/ExpertManagement";
 import IdeaManagement from "~/pages/IdeaManagement";
 import ProblemManagement from "~/pages/ProblemManagement";
+import TransactionHistory from "~/pages/TransactionHistory";
 import UserManagement from "~/pages/UserManagement";
 
 const authRoutes = [];
@@ -17,7 +18,15 @@ const priviteRoutes = [
     component: IdeaManagement,
   },
   {
+    path: config.routes.ideaMntDe,
+    component: IdeaManagement,
+  },
+  {
     path: config.routes.problemMnt,
+    component: ProblemManagement,
+  },
+  {
+    path: config.routes.problemMntDe,
     component: ProblemManagement,
   },
   {
@@ -27,6 +36,10 @@ const priviteRoutes = [
   {
     path: config.routes.userMnt,
     component: UserManagement,
+  },
+  {
+    path: config.routes.transaction,
+    component: TransactionHistory,
   },
 ];
 

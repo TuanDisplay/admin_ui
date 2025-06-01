@@ -27,32 +27,30 @@ const quicklyData = [
 
 export default function Dashboard() {
   return (
-    <div className="">
-      <div className="mx-auto max-w-[1000px] py-10">
-        <div className="title">
-          <h1 className="font-semibold text-xl">Dashboard</h1>
-          <p className="font-medium text-xs opacity-50">
-            Hi, Tuấn. Chào mừng quay lại I-Match Admin!
-          </p>
+    <div className="mx-auto max-w-[1000px] py-10">
+      <div className="title">
+        <h1 className="font-semibold text-xl">Dashboard</h1>
+        <p className="font-medium text-xs opacity-50">
+          Hi, Tuấn. Chào mừng quay lại I-Match Admin!
+        </p>
+      </div>
+      <div className="quickly mt-10">
+        <div className="flex justify-between">
+          {quicklyData.map((data, index) => {
+            return (
+              <QuickData
+                key={index}
+                imgIcon={data.imageIcon}
+                quickData={data.quickdata}
+                name={data.name}
+              />
+            );
+          })}
         </div>
-        <div className="quickly mt-10">
-          <div className="flex justify-between">
-            {quicklyData.map((data, index) => {
-              return (
-                <QuickData
-                  key={index}
-                  imgIcon={data.imageIcon}
-                  quickData={data.quickdata}
-                  name={data.name}
-                />
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex gap-10 mt-20">
-          <PieChartData />
-          <LineChartData />
-        </div>
+      </div>
+      <div className="flex gap-10 mt-20 ">
+        <PieChartData />
+        <LineChartData />
       </div>
     </div>
   );
