@@ -1,20 +1,26 @@
 import { useState } from "react";
+import * as adminService from "~/services/admin.service";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Fake check, bạn có thể thay bằng API real
-    if (username === "admin" && password === "admin123") {
-      setError("");
-      toast.success("Login successful!");
-      // Redirect to dashboard here if needed
-    } else {
-      setError("Invalid username or password");
+    try {
+      const res = await adminService.login(email, password);
+      const token = res.data.token;
+      if (token) {
+        localStorage.setItem("adminToken", token);
+        navigate("/");
+        toast.success("Đăng nhập thành công");
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -28,16 +34,16 @@ const AdminLogin = () => {
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block text-sm font-medium text-gray-600"
             >
-              Username
+              Email
             </label>
             <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
@@ -47,6 +53,7 @@ const AdminLogin = () => {
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-600"
+              autoCorrect={password}
             >
               Password
             </label>
@@ -59,8 +66,6 @@ const AdminLogin = () => {
               required
             />
           </div>
-
-          {error && <p className="text-sm text-red-500">{error}</p>}
 
           <button
             type="submit"

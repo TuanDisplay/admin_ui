@@ -1,7 +1,9 @@
 import config from "~/config";
 import Dashboard from "~/pages/Dashboard";
 import ExpertManagement from "~/pages/ExpertManagement";
+import IdeaDeMana from "~/pages/IdeaDeMana";
 import IdeaManagement from "~/pages/IdeaManagement";
+import ProblemDeMana from "~/pages/ProblemDeMana";
 import ProblemManagement from "~/pages/ProblemManagement";
 import TransactionHistory from "~/pages/TransactionHistory";
 import UserManagement from "~/pages/UserManagement";
@@ -19,7 +21,7 @@ const priviteRoutes = [
   },
   {
     path: config.routes.ideaMntDe,
-    component: IdeaManagement,
+    component: IdeaDeMana,
   },
   {
     path: config.routes.problemMnt,
@@ -27,7 +29,7 @@ const priviteRoutes = [
   },
   {
     path: config.routes.problemMntDe,
-    component: ProblemManagement,
+    component: ProblemDeMana,
   },
   {
     path: config.routes.expertMnt,

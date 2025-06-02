@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function LoginAuth({ children }: { children: ReactNode }) {
-  // const token = "k";
-  // if (token == "") {
-  //   return <Navigate to="/admin-login" />;
-  // }
+  const token = localStorage.getItem("adminToken");
+
+  if (!token) {
+    return <Navigate to="/admin-login" replace />;
+  }
   return <>{children}</>;
 }
