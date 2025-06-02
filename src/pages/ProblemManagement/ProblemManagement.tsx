@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import type { IManaPage } from "~/common/types";
 import { ProductTable } from "~/components/DataTable";
 import PaginationBar from "~/components/PaginationBar";
 import TableFilter from "~/components/TableFilter";
+import * as productService from "~/services/product.service";
 
 const cols = ["stt", "title", "author", "visible", "last update", "actions"];
 
@@ -11,6 +14,18 @@ export default function IdeaManagement() {
   const [statusSelected, setStatusSelected] = useState("");
   const [priceSelected, setPriceSelected] = useState("");
   const [searchText, setSearchText] = useState("");
+
+  const { data } = useQuery({
+    queryKey: ["Problem-Mana"],
+    queryFn: async (): Promise<IManaPage> => {
+      const res = await productService.problemWatting();
+      return res;
+    },
+  });
+
+  const itemsData = useMemo(() => {
+    return data?.items ? data?.items : [];
+  }, [data]);
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -32,14 +47,18 @@ export default function IdeaManagement() {
           setSearchText={setSearchText}
         />
         <div className="overflow-x-auto border border-gray-300 h-[55vh] overflow-y-auto">
-          <ProductTable cols={cols} productType="problem-management" />
+          <ProductTable
+            cols={cols}
+            productType="problem-management"
+            data={itemsData}
+          />
         </div>
       </div>
       <PaginationBar
         currentPage={currentPage}
-        itemsPerPage={3}
+        itemsPerPage={data?.limit ? data?.limit : 0}
         setCurrentPage={setCurrentPage}
-        totalItems={8}
+        totalItems={data?.total ? data?.total : 0}
       />
     </div>
   );

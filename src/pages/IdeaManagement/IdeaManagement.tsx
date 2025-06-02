@@ -4,7 +4,7 @@ import { ProductTable } from "~/components/DataTable";
 import PaginationBar from "~/components/PaginationBar";
 import TableFilter from "~/components/TableFilter";
 import * as productService from "~/services/product.service";
-import type { IIdeaManaPage } from "~/common/types";
+import type { IManaPage } from "~/common/types";
 // import { useDebounce } from "~/hooks/useDebounce";
 
 const cols = ["stt", "uuid", "title", "author", "visible", "field", "actions"];
@@ -20,7 +20,7 @@ export default function IdeaManagement() {
 
   const { data } = useQuery({
     queryKey: ["Idea-Mana"],
-    queryFn: async (): Promise<IIdeaManaPage> => {
+    queryFn: async (): Promise<IManaPage> => {
       const res = await productService.ideaWatting();
       return res;
     },

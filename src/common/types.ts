@@ -1,4 +1,4 @@
-export interface IIdeaManaPage {
+export interface IManaPage {
   limit: number;
   page: number;
   pages: number;
