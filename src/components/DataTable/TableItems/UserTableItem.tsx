@@ -12,7 +12,7 @@ interface ITableBody {
 
 const className = "px-3 py-1 text-nowrap text-sm";
 
-export default function UserTable({
+export default function UserTableItem({
   index,
   uuid,
   username,
@@ -22,7 +22,6 @@ export default function UserTable({
   const [isVisible, setVisible] = useState<boolean>(true);
   return (
     <tr
-      key={index}
       className={clsx("hover:bg-gray-50 border-b-1", {
         "bg-white": index % 2 === 0,
       })}

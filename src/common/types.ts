@@ -3,22 +3,23 @@ export interface IManaPage {
   page: number;
   pages: number;
   total: number;
-  items: IIdeaMana[];
+  items: IProductMana[];
 }
 
-export interface IIdeaMana {
+export interface IProductMana {
   uuid: string;
   customer_name: string;
   ideasname: string;
+  problemname: string;
   industry: string;
 }
 
-export interface IIdeaDeMana extends IIdeaMana {
-  content_detail: string,
-  value_benefits: string,
-  price: number,
-  customer_email: string,
-  image: string[],
-  view: number,
-  image_intellect: string,
+export interface IProductDeMana extends IProductMana {
+  content_detail: string;
+  value_benefits: string;
+  price: number;
+  customer_email: string;
+  image: string[];
+  view: number;
+  image_intellect: string;
 }

@@ -1,15 +1,15 @@
 import clsx from "clsx";
 import { ChevronsUpDown } from "lucide-react";
-import { ProductTable } from "./TableItems";
-import type { IIdeaMana } from "~/common/types";
+import type { IProductMana } from "~/common/types";
+import ProductTableItem from "./TableItems/ProductTableItem";
 
 interface IDataTable {
   cols: string[];
-  data: IIdeaMana[];
+  data: IProductMana[];
   productType: "idea-management" | "problem-management";
 }
 
-const DataTable = ({ cols, data, productType }: IDataTable) => {
+const ProductTable = ({ cols, data, productType }: IDataTable) => {
   return (
     <table className="w-full">
       <thead className="bg-gray-100 border-b-2">
@@ -37,12 +37,17 @@ const DataTable = ({ cols, data, productType }: IDataTable) => {
       </thead>
       <tbody>
         {data.map((item, index) => (
-          <ProductTable
+          <ProductTableItem
+            key={index}
             index={index}
             uuid={item.uuid}
             author={item.customer_name}
-            title={item.ideasname}
-            lastUpdate={item.industry}
+            title={
+              productType == "idea-management"
+                ? item.ideasname
+                : item.problemname
+            }
+            field={item.industry}
             type={productType}
           />
         ))}
@@ -51,4 +56,4 @@ const DataTable = ({ cols, data, productType }: IDataTable) => {
   );
 };
 
-export default DataTable;
+export default ProductTable;

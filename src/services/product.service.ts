@@ -27,7 +27,7 @@ export const ideaReject = async (idea_id: string) => {
 //problem
 
 export const problemWatting = async () => {
-  const res = await ideaRequest.get("/problem/list-watting");
+  const res = await problemRequest.get("/problem/list-watting");
   return res.data;
 };
 

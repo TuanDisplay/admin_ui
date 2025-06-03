@@ -21,20 +21,20 @@ const quicklyData = [
   {
     imageIcon: "/quickDataImage/Icon4.png",
     quickdata: 80,
-    name: "Total Revenue",
+    name: "Total Users",
   },
 ];
 
 export default function Dashboard() {
   return (
-    <div className="mx-auto max-w-[1000px] py-10">
-      <div className="title">
+    <div className="mx-auto max-w-5xl py-10">
+      <div>
         <h1 className="font-semibold text-xl">Dashboard</h1>
         <p className="font-medium text-xs opacity-50">
           Hi, Tuấn. Chào mừng quay lại I-Match Admin!
         </p>
       </div>
-      <div className="quickly mt-10">
+      <div className="mt-10">
         <div className="flex justify-between">
           {quicklyData.map((data, index) => {
             return (

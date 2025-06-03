@@ -4,9 +4,10 @@ import type { IManaPage } from "~/common/types";
 import { ProductTable } from "~/components/DataTable";
 import PaginationBar from "~/components/PaginationBar";
 import TableFilter from "~/components/TableFilter";
+import LoadingScreen from "~/layouts/component/LoadingScreen";
 import * as productService from "~/services/product.service";
 
-const cols = ["stt", "title", "author", "visible", "last update", "actions"];
+const cols = ["stt", "uuid", "title", "author", "visible", "field", "actions"];
 
 export default function IdeaManagement() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -15,7 +16,7 @@ export default function IdeaManagement() {
   const [priceSelected, setPriceSelected] = useState("");
   const [searchText, setSearchText] = useState("");
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["Problem-Mana"],
     queryFn: async (): Promise<IManaPage> => {
       const res = await productService.problemWatting();
@@ -47,11 +48,15 @@ export default function IdeaManagement() {
           setSearchText={setSearchText}
         />
         <div className="overflow-x-auto border border-gray-300 h-[55vh] overflow-y-auto">
-          <ProductTable
-            cols={cols}
-            productType="problem-management"
-            data={itemsData}
-          />
+          {isLoading ? (
+            <LoadingScreen />
+          ) : (
+            <ProductTable
+              cols={cols}
+              productType="problem-management"
+              data={itemsData}
+            />
+          )}
         </div>
       </div>
       <PaginationBar

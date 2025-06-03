@@ -6,19 +6,19 @@ export default function PieChartData() {
       <div className="font-bold ml-4">Pie Chart</div>
       <div className="flex justify-around mt-2 h-[180px]">
         <DonutChart
-          title="Total Ideas"
+          title="Purchased Idea"
           percentage={81}
           mainColor="#f44336"
           secondaryColor="#ffe5e5"
         />
         <DonutChart
-          title="Total Problems"
+          title="Resolved Issue"
           percentage={22}
           mainColor="#4caf50"
           secondaryColor="#e6f4e9"
         />
         <DonutChart
-          title="Total Revenue"
+          title="Premium User"
           percentage={62}
           mainColor="#2196f3"
           secondaryColor="#e0f2ff"

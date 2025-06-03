@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import { ChevronsUpDown } from "lucide-react";
 import { dataUser } from "~/common/data";
-import { UserTable } from "./TableItems";
+import UserTableItem from "./TableItems/UserTableItem";
 
 interface IDataTable {
   cols: string[];
   userType: "expert-management" | "user-management";
 }
 
-const DataTable = ({ cols }: IDataTable) => {
+const UserTable = ({ cols }: IDataTable) => {
   return (
     <table className="w-full">
       <thead className="bg-gray-100 border-b-2">
@@ -36,7 +36,8 @@ const DataTable = ({ cols }: IDataTable) => {
       </thead>
       <tbody>
         {dataUser.map((item, index) => (
-          <UserTable
+          <UserTableItem
+            key={index}
             index={index}
             uuid={item.id}
             username={item.name}
@@ -49,4 +50,4 @@ const DataTable = ({ cols }: IDataTable) => {
   );
 };
 
-export default DataTable;
+export default UserTable;

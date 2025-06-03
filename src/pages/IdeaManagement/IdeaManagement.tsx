@@ -5,6 +5,7 @@ import PaginationBar from "~/components/PaginationBar";
 import TableFilter from "~/components/TableFilter";
 import * as productService from "~/services/product.service";
 import type { IManaPage } from "~/common/types";
+import LoadingScreen from "~/layouts/component/LoadingScreen";
 // import { useDebounce } from "~/hooks/useDebounce";
 
 const cols = ["stt", "uuid", "title", "author", "visible", "field", "actions"];
@@ -18,12 +19,14 @@ export default function IdeaManagement() {
 
   // const debounceSearchValue = useDebounce(searchText, 500)
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["Idea-Mana"],
     queryFn: async (): Promise<IManaPage> => {
       const res = await productService.ideaWatting();
       return res;
     },
+    staleTime: 1000 * 60 * 2,
+    retry: 2,
   });
 
   const itemsData = useMemo(() => {
@@ -50,11 +53,15 @@ export default function IdeaManagement() {
           setSearchText={setSearchText}
         />
         <div className="overflow-x-auto border border-gray-300 h-[55vh] overflow-y-auto">
-          <ProductTable
-            cols={cols}
-            data={itemsData}
-            productType="idea-management"
-          />
+          {isLoading ? (
+            <LoadingScreen />
+          ) : (
+            <ProductTable
+              cols={cols}
+              data={itemsData}
+              productType="idea-management"
+            />
+          )}
         </div>
       </div>
       <PaginationBar
