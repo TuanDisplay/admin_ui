@@ -6,6 +6,7 @@ import Button from "~/components/Button";
 import { convertCategoryName } from "~/utils/files";
 import * as productService from "~/services/product.service";
 import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface ITableBody {
   index: number;
@@ -26,13 +27,17 @@ export default function ProductTableItem({
   field,
   type,
 }: ITableBody) {
+  const queryClient = useQueryClient();
+
   const handleAccept = async () => {
     try {
       if (type == "idea-management" && uuid) {
         await productService.ideaAccept(uuid);
+        queryClient.invalidateQueries({ queryKey: ["ideaMana"] });
         toast.success("Đã duyệt ý tưởng");
       } else if (type == "problem-management" && uuid) {
         await productService.problemAccept(uuid);
+        queryClient.invalidateQueries({ queryKey: ["problemMana"] });
         toast.success("Đã duyệt vấn đề");
       }
     } catch (err) {

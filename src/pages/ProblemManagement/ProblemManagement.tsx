@@ -17,7 +17,7 @@ export default function IdeaManagement() {
   const [searchText, setSearchText] = useState("");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["Problem-Mana"],
+    queryKey: ["problemMana"],
     queryFn: async (): Promise<IManaPage> => {
       const res = await productService.problemWatting();
       return res;

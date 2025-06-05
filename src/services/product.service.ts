@@ -13,13 +13,13 @@ export const ideaWattingDe = async (idea_id: string) => {
 };
 
 export const ideaAccept = async (idea_id: string) => {
-  await ideaRequest.post(`/ideas/${idea_id}/accept-status`, {
+  await ideaRequest.put(`/ideas/${idea_id}/accept-status`, {
     is_active: 1,
   });
 };
 
 export const ideaReject = async (idea_id: string) => {
-  await ideaRequest.post(`/ideas/${idea_id}/reject-status`, {
+  await ideaRequest.put(`/ideas/${idea_id}/reject-status`, {
     is_delete: 1,
   });
 };
@@ -37,13 +37,13 @@ export const problemWattingDe = async (problem_id: string) => {
 };
 
 export const problemAccept = async (problem_id: string) => {
-  await problemRequest.post(`/problem/${problem_id}/accept-status`, {
+  await problemRequest.put(`/problem/${problem_id}/accept-status`, {
     is_active: 1,
   });
 };
 
 export const problemReject = async (problem_id: string) => {
-  await problemRequest.post(`/problem/${problem_id}/reject-status`, {
+  await problemRequest.put(`/problem/${problem_id}/reject-status`, {
     is_delete: 1,
   });
 };

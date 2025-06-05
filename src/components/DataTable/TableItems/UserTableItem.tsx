@@ -49,7 +49,7 @@ export default function UserTableItem({
           </Button>
         )}
       </td>
-      <td className={clsx("", className)}>
+      <td className={clsx("flex gap-2", className)}>
         <Button className="px-3 py-1.5" cancel>
           Delete
         </Button>

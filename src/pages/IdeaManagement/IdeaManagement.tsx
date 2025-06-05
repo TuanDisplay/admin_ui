@@ -20,7 +20,7 @@ export default function IdeaManagement() {
   // const debounceSearchValue = useDebounce(searchText, 500)
 
   const { data, isLoading } = useQuery({
-    queryKey: ["Idea-Mana"],
+    queryKey: ["ideaMana"],
     queryFn: async (): Promise<IManaPage> => {
       const res = await productService.ideaWatting();
       return res;

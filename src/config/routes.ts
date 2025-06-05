@@ -5,6 +5,7 @@ const routes = {
   problemMnt: "/problem-management",
   problemMntDe: "/problem-management/:problemId",
   expertMnt: "/expert-management",
+  expertEdMnt: "/expert-edit-management/:editExpId",
   userMnt: "/user-management",
   transaction: "/transaction-history",
 };

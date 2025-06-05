@@ -23,3 +23,12 @@ export interface IProductDeMana extends IProductMana {
   view: number;
   image_intellect: string;
 }
+
+export interface IUpdateExpert {
+  expertname: string;
+  image: string;
+  introduce: string;
+  achivement: string[];
+  industry: string[];
+  password: string;
+}
