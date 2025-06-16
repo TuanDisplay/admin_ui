@@ -12,6 +12,9 @@ export interface IProductMana {
   ideasname: string;
   problemname: string;
   industry: string;
+  is_active: number;
+  is_delete: number;
+  post_day: string;
 }
 
 export interface IProductDeMana extends IProductMana {
@@ -24,11 +27,17 @@ export interface IProductDeMana extends IProductMana {
   image_intellect: string;
 }
 
-export interface IUpdateExpert {
-  expertname: string;
-  image: string;
-  introduce: string;
-  achivement: string[];
-  industry: string[];
-  password: string;
+// user
+export interface IUserManaPage {
+  limit: number;
+  page: number;
+  pages: number;
+  total: number;
+  items: IUserMana[];
+}
+export interface IUserMana {
+  uuid: string;
+  username: string;
+  is_active: number;
+  is_delete: number;
 }

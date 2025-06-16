@@ -42,12 +42,15 @@ const ProductTable = ({ cols, data, productType }: IDataTable) => {
             index={index}
             uuid={item.uuid}
             author={item.customer_name}
+            date={item.post_day}
             title={
               productType == "idea-management"
                 ? item.ideasname
                 : item.problemname
             }
             field={item.industry}
+            isAccept={item.is_active}
+            isDelete={item.is_delete}
             type={productType}
           />
         ))}

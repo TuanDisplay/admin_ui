@@ -26,6 +26,7 @@ export default function UserTableItem({
         "bg-white": index % 2 === 0,
       })}
     >
+      <td className={clsx(className)}>{index + 1}</td>
       <td className={clsx(className)}>{uuid}</td>
       <td className={clsx("", className)}>{username}</td>
       <td className={clsx("", className)}>{email}</td>

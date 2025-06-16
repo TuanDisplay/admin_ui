@@ -20,6 +20,11 @@ export const dataVisible = [
   { id: 1, name: "Ẩn", value: "0" },
 ];
 
+export const dataAccept = [
+  { id: 0, name: "Ý tưởng đã duyệt", value: 1 },
+  { id: 1, name: "Ý tưởng chờ duyệt", value: 0 },
+];
+
 export const dataPriceRange = [
   { id: 1, name: "Dưới 1 triệu", value: "tier1" },
   { id: 2, name: "Từ 1 - 3 triệu", value: "tier2" },

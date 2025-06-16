@@ -1,24 +1,24 @@
 import { Search } from "lucide-react";
-import { dataField, dataPriceRange, dataVisible } from "~/common/data";
+import { dataAccept, dataField, dataVisible } from "~/common/data";
 
 interface ITableFilter {
   fieldSelected: string;
   statusSelected: string;
-  priceSelected?: string;
+  isAccept?: number;
   searchText: string;
   setFieldSelected: React.Dispatch<React.SetStateAction<string>>;
   setStatusSelected: React.Dispatch<React.SetStateAction<string>>;
-  setPriceSelected?: React.Dispatch<React.SetStateAction<string>>;
+  setAccept?: React.Dispatch<React.SetStateAction<number>>;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TableFilter = ({
   fieldSelected,
   statusSelected,
-  priceSelected,
+  isAccept,
   setFieldSelected,
   setStatusSelected,
-  setPriceSelected,
+  setAccept,
   searchText,
   setSearchText,
 }: ITableFilter) => {
@@ -58,26 +58,22 @@ const TableFilter = ({
         })}
       </select>
 
-      {/* Filter by date */}
-      {priceSelected ||
-        (setPriceSelected && (
-          <select
-            className="border border-black px-3 py-2 text-sm w-48 cursor-pointer"
-            value={priceSelected}
-            onChange={(e) => setPriceSelected(e.target.value)}
-          >
-            <option value="">Tất cả mức giá</option>
-            {dataPriceRange.map((field) => {
-              return (
-                <option key={field.id} value={field.value}>
-                  {field.name}
-                </option>
-              );
-            })}
-          </select>
-        ))}
+      {setAccept && (
+        <select
+          className="border border-black px-3 py-2 text-sm w-48 cursor-pointer"
+          value={isAccept}
+          onChange={(e) => setAccept(parseInt(e.target.value))}
+        >
+          {dataAccept.map((field) => {
+            return (
+              <option key={field.id} value={field.value} selected>
+                {field.name}
+              </option>
+            );
+          })}
+        </select>
+      )}
 
-      {/* Search input */}
       <div className="relative w-64 flex-1">
         <input
           type="text"

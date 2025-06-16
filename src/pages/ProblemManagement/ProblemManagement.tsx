@@ -7,19 +7,39 @@ import TableFilter from "~/components/TableFilter";
 import LoadingScreen from "~/layouts/component/LoadingScreen";
 import * as productService from "~/services/product.service";
 
-const cols = ["stt", "uuid", "title", "author", "visible", "field", "actions"];
+const cols = [
+  "no. ",
+  "uuid",
+  "title",
+  "author",
+  "date",
+  "visible",
+  "field",
+  "actions",
+];
 
 export default function IdeaManagement() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fieldSelected, setFieldSelected] = useState("");
   const [statusSelected, setStatusSelected] = useState("");
-  const [priceSelected, setPriceSelected] = useState("");
+  const [isAccept, setAccept] = useState<number>(1);
   const [searchText, setSearchText] = useState("");
 
+  const newCols = useMemo(() => {
+    if (isAccept === 1) return cols;
+    const isAccepting = cols.filter((item) => item !== "visible");
+    return isAccepting;
+  }, [isAccept]);
+
+  const params = {
+    is_delete: 0,
+    is_active: isAccept,
+  };
+
   const { data, isLoading } = useQuery({
-    queryKey: ["problemMana"],
+    queryKey: ["problemMana", params],
     queryFn: async (): Promise<IManaPage> => {
-      const res = await productService.problemWatting();
+      const res = await productService.problemMana(params);
       return res;
     },
   });
@@ -40,11 +60,11 @@ export default function IdeaManagement() {
         <TableFilter
           fieldSelected={fieldSelected}
           statusSelected={statusSelected}
-          priceSelected={priceSelected}
+          isAccept={isAccept}
           searchText={searchText}
           setFieldSelected={setFieldSelected}
           setStatusSelected={setStatusSelected}
-          setPriceSelected={setPriceSelected}
+          setAccept={setAccept}
           setSearchText={setSearchText}
         />
         <div className="overflow-x-auto border border-gray-300 h-[55vh] overflow-y-auto">
@@ -52,7 +72,7 @@ export default function IdeaManagement() {
             <LoadingScreen />
           ) : (
             <ProductTable
-              cols={cols}
+              cols={newCols}
               productType="problem-management"
               data={itemsData}
             />

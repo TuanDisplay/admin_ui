@@ -2,8 +2,10 @@ import ideaRequest from "~/utils/axios/ideaRequest";
 import problemRequest from "~/utils/axios/problemRequest";
 
 //idea
-export const ideaWatting = async () => {
-  const res = await ideaRequest.get("/ideas/list-watting");
+export const ideaMana = async (params: any) => {
+  const res = await ideaRequest.get("/ideas/admin-list", {
+    params: params,
+  });
   return res.data;
 };
 
@@ -12,22 +14,24 @@ export const ideaWattingDe = async (idea_id: string) => {
   return res.data;
 };
 
-export const ideaAccept = async (idea_id: string) => {
+export const ideaAccept = async (idea_id: string, is_active: 0 | 1) => {
   await ideaRequest.put(`/ideas/${idea_id}/accept-status`, {
-    is_active: 1,
+    is_active: is_active,
   });
 };
 
-export const ideaReject = async (idea_id: string) => {
+export const ideaReject = async (idea_id: string, is_delete: 0 | 1) => {
   await ideaRequest.put(`/ideas/${idea_id}/reject-status`, {
-    is_delete: 1,
+    is_delete: is_delete,
   });
 };
 
 //problem
 
-export const problemWatting = async () => {
-  const res = await problemRequest.get("/problem/list-watting");
+export const problemMana = async (params: any) => {
+  const res = await problemRequest.get("/problem/admin-list", {
+    params: params
+  });
   return res.data;
 };
 
@@ -36,14 +40,14 @@ export const problemWattingDe = async (problem_id: string) => {
   return res.data;
 };
 
-export const problemAccept = async (problem_id: string) => {
+export const problemAccept = async (problem_id: string, is_active: 0 | 1) => {
   await problemRequest.put(`/problem/${problem_id}/accept-status`, {
-    is_active: 1,
+    is_active: is_active,
   });
 };
 
-export const problemReject = async (problem_id: string) => {
+export const problemReject = async (problem_id: string, is_delete: 0 | 1) => {
   await problemRequest.put(`/problem/${problem_id}/reject-status`, {
-    is_delete: 1,
+    is_delete: is_delete,
   });
 };
