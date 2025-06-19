@@ -4,12 +4,11 @@ import { dataAccept, dataField, dataVisible } from "~/common/data";
 interface ITableFilter {
   fieldSelected: string;
   statusSelected: string;
-  status: string;
+  status?: string;
   searchText: string;
   setFieldSelected: React.Dispatch<React.SetStateAction<string>>;
   setStatusSelected: React.Dispatch<React.SetStateAction<string>>;
   setStatus?: React.Dispatch<React.SetStateAction<string>>;
-  setDelete?: React.Dispatch<React.SetStateAction<number>>;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 }
 
