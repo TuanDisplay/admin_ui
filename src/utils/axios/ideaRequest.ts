@@ -5,7 +5,7 @@ const ideaRequest = axios.create({
 });
 
 ideaRequest.interceptors.request.use((config) => {
-  const token = localStorage.getItem('accessToken');
+  const token = localStorage.getItem('adminToken');
   if (token) {
     config.headers['x-token'] = token;
   }

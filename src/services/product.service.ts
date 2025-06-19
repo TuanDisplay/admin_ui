@@ -1,10 +1,18 @@
 import ideaRequest from "~/utils/axios/ideaRequest";
 import problemRequest from "~/utils/axios/problemRequest";
 
+interface IStatusProduct {
+  is_active: number;
+  is_delete: number;
+}
+
 //idea
-export const ideaMana = async (params: any) => {
+export const ideaMana = async (params: IStatusProduct) => {
   const res = await ideaRequest.get("/ideas/admin-list", {
-    params: params,
+    params: {
+      is_active: params.is_active,
+      is_delete: params.is_delete,
+    },
   });
   return res.data;
 };
@@ -28,9 +36,12 @@ export const ideaReject = async (idea_id: string, is_delete: 0 | 1) => {
 
 //problem
 
-export const problemMana = async (params: any) => {
+export const problemMana = async (params: IStatusProduct) => {
   const res = await problemRequest.get("/problem/admin-list", {
-    params: params
+    params: {
+      is_active: params.is_active,
+      is_delete: params.is_delete,
+    },
   });
   return res.data;
 };

@@ -41,3 +41,23 @@ export interface IUserMana {
   is_active: number;
   is_delete: number;
 }
+
+// history
+export interface IHisPage {
+  limit: number;
+  page: number;
+  pages: number;
+  total: number;
+  items: ITranHistory[];
+}
+
+export interface ITranHistory {
+  uuid: string;
+  customer_name: string;
+  customer_uuid: string;
+  produce_uuid: string;
+  amount: number;
+  description: string;
+  type_produce: "ideas" | "problems";
+  created_at: string;
+}

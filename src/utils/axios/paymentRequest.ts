@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const adminRequest = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL_ADMIN,
+const paymentRequest = axios.create({
+  baseURL: import.meta.env.VITE_BASE_URL_PAYMENT,
 });
 
-adminRequest.interceptors.request.use((config) => {
+paymentRequest.interceptors.request.use((config) => {
   const token = localStorage.getItem('adminToken');
   if (token) {
     config.headers['x-token'] = token;
@@ -13,19 +13,19 @@ adminRequest.interceptors.request.use((config) => {
 });
 
 export const get = async (path: string, options = {}) => {
-  const response = await adminRequest.get(path, options);
+  const response = await paymentRequest.get(path, options);
   return response.data;
 };
 
 export const post = async (path: string, data = {}, options = {}) => {
-  const response = await adminRequest.post(path, data, options);
+  const response = await paymentRequest.post(path, data, options);
   return response.data;
 };
 
 export const put = async (path: string, data = {}, options = {}) => {
-  const response = await adminRequest.put(path, data, options);
+  const response = await paymentRequest.put(path, data, options);
   return response.data;
 };
 
 
-export default adminRequest;
+export default paymentRequest;

@@ -21,8 +21,21 @@ export const dataVisible = [
 ];
 
 export const dataAccept = [
-  { id: 0, name: "Ý tưởng đã duyệt", value: 1 },
-  { id: 1, name: "Ý tưởng chờ duyệt", value: 0 },
+  {
+    id: 0,
+    name: "Ý tưởng đã duyệt",
+    value: "1:0",
+  },
+  {
+    id: 1,
+    name: "Ý tưởng chờ duyệt",
+    value: "0:0",
+  },
+  {
+    id: 2,
+    name: "Ý tưởng bị ẩn",
+    value: "1:1",
+  },
 ];
 
 export const dataPriceRange = [

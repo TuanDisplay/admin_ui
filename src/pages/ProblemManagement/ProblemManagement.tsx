@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { IManaPage } from "~/common/types";
 import { ProductTable } from "~/components/DataTable";
 import PaginationBar from "~/components/PaginationBar";
@@ -22,18 +22,22 @@ export default function IdeaManagement() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fieldSelected, setFieldSelected] = useState("");
   const [statusSelected, setStatusSelected] = useState("");
-  const [isAccept, setAccept] = useState<number>(1);
   const [searchText, setSearchText] = useState("");
+  const [status, setStatus] = useState<string>("1:0");
+  const [statusCheck, setStatusCheck] = useState<{
+    is_active: number;
+    is_delete: number;
+  }>({ is_active: 1, is_delete: 0 });
 
   const newCols = useMemo(() => {
-    if (isAccept === 1) return cols;
+    if (status == "1:0" || status == "1:1") return cols;
     const isAccepting = cols.filter((item) => item !== "visible");
     return isAccepting;
-  }, [isAccept]);
+  }, [status]);
 
   const params = {
-    is_delete: 0,
-    is_active: isAccept,
+    is_active: statusCheck.is_active,
+    is_delete: statusCheck.is_delete,
   };
 
   const { data, isLoading } = useQuery({
@@ -48,6 +52,16 @@ export default function IdeaManagement() {
     return data?.items ? data?.items : [];
   }, [data]);
 
+    useEffect(() => {
+      if (status == "1:0") {
+        setStatusCheck({ is_active: 1, is_delete: 0 });
+      } else if (status == "1:1") {
+        setStatusCheck({ is_active: 1, is_delete: 1 });
+      } else {
+        setStatusCheck({ is_active: 0, is_delete: 0 });
+      }
+    }, [status]);
+
   return (
     <div className="mx-auto max-w-5xl">
       <div className="text-center mt-10">
@@ -60,11 +74,11 @@ export default function IdeaManagement() {
         <TableFilter
           fieldSelected={fieldSelected}
           statusSelected={statusSelected}
-          isAccept={isAccept}
           searchText={searchText}
+          status={status}
           setFieldSelected={setFieldSelected}
           setStatusSelected={setStatusSelected}
-          setAccept={setAccept}
+          setStatus={setStatus}
           setSearchText={setSearchText}
         />
         <div className="overflow-x-auto border border-gray-300 h-[55vh] overflow-y-auto">

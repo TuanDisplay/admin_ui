@@ -4,22 +4,23 @@ import { dataAccept, dataField, dataVisible } from "~/common/data";
 interface ITableFilter {
   fieldSelected: string;
   statusSelected: string;
-  isAccept?: number;
+  status: string;
   searchText: string;
   setFieldSelected: React.Dispatch<React.SetStateAction<string>>;
   setStatusSelected: React.Dispatch<React.SetStateAction<string>>;
-  setAccept?: React.Dispatch<React.SetStateAction<number>>;
+  setStatus?: React.Dispatch<React.SetStateAction<string>>;
+  setDelete?: React.Dispatch<React.SetStateAction<number>>;
   setSearchText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TableFilter = ({
   fieldSelected,
   statusSelected,
-  isAccept,
+  searchText,
+  status,
   setFieldSelected,
   setStatusSelected,
-  setAccept,
-  searchText,
+  setStatus,
   setSearchText,
 }: ITableFilter) => {
   return (
@@ -58,15 +59,15 @@ const TableFilter = ({
         })}
       </select>
 
-      {setAccept && (
+      {setStatus && (
         <select
           className="border border-black px-3 py-2 text-sm w-48 cursor-pointer"
-          value={isAccept}
-          onChange={(e) => setAccept(parseInt(e.target.value))}
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
         >
           {dataAccept.map((field) => {
             return (
-              <option key={field.id} value={field.value} selected>
+              <option key={field.id} value={field.value}>
                 {field.name}
               </option>
             );
