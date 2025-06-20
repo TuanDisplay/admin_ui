@@ -72,3 +72,14 @@ export const problemReject = async (problem_id: string, is_delete: 0 | 1) => {
     is_delete: is_delete,
   });
 };
+
+// dashboard
+export const totalIdeas  = async () => {
+  const res = await ideaRequest.get('/ideas/countideas')
+  return res.data
+}
+
+export const totalProblems  = async () => {
+  const res = await problemRequest.get('/problem/countproblem')
+  return res.data
+}

@@ -36,3 +36,14 @@ export const expert = async (params: IUserParams) => {
   });
   return res.data;
 };
+
+// dashboard
+export const totalExpert = async () => {
+  const res = await expertRequest.get("/expert/count");
+  return res.data;
+};
+
+export const totalUser = async () => {
+  const res = await customerRequest.get("/customer/count");
+  return res.data;
+};

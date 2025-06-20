@@ -16,8 +16,8 @@ export const dataField = [
 ];
 
 export const dataMemberType = [
-  { id: 0, name: "Thường dân", value: "free" },
-  { id: 1, name: "Quý tộc", value: "premium" },
+  { id: 0, name: "Phổ thông", value: "free" },
+  { id: 1, name: "Cao cấp", value: "premium" },
 ];
 
 export const dataVisible = [

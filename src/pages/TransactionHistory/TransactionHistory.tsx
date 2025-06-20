@@ -36,7 +36,7 @@ export default function TransactionHistory() {
         Back
       </Button>
 
-      <h1 className="text-2xl font-bold my-4">Transaction history</h1>
+      <h1 className="text-2xl font-bold my-4">Lịch sử giao dịch</h1>
 
       {isLoading ? (
         <LoadingScreen className="!h-[80vh]" />
