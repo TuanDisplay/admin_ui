@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as adminService from "~/services/admin.service";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import type { AxiosError } from "axios";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,8 @@ const AdminLogin = () => {
         toast.success("Đăng nhập thành công");
       }
     } catch (err) {
-      console.error(err);
+      const error = err as AxiosError<{ message: string }>;
+      toast.error(error.response?.data.message || "Có lỗi xảy ra");
     }
   };
 
