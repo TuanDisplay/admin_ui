@@ -4,6 +4,10 @@ import problemRequest from "~/utils/axios/problemRequest";
 interface IStatusProduct {
   is_active: number;
   is_delete: number;
+  page: number;
+  industry: string;
+  ideasname?: string;
+  problemname?: string;
 }
 
 //idea
@@ -12,6 +16,9 @@ export const ideaMana = async (params: IStatusProduct) => {
     params: {
       is_active: params.is_active,
       is_delete: params.is_delete,
+      page: params.page,
+      industry: params.industry,
+      ideasname: params.ideasname,
     },
   });
   return res.data;
@@ -41,6 +48,9 @@ export const problemMana = async (params: IStatusProduct) => {
     params: {
       is_active: params.is_active,
       is_delete: params.is_delete,
+      page: params.page,
+      industry: params.industry,
+      problemname: params.problemname,
     },
   });
   return res.data;

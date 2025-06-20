@@ -9,10 +9,10 @@ interface IDataTable {
   userType: "expert-management" | "user-management";
 }
 
-const UserTable = ({ cols, data }: IDataTable) => {
+const UserTable = ({ cols, data, userType }: IDataTable) => {
   return (
     <table className="w-full">
-      <thead className="bg-gray-100 border-b-2">
+      <thead className="bg-gray-100 border-b-2 text-nowrap">
         <tr>
           {cols.map((col, index) => {
             return (
@@ -22,11 +22,11 @@ const UserTable = ({ cols, data }: IDataTable) => {
               >
                 <div
                   className={clsx("flex items-center justify-between", {
-                    "ml-2": col == "actions" || col == "visible",
+                    "ml-2": col == "actions" || col == "Khóa/Mở",
                   })}
                 >
                   {col}
-                  {col !== "actions" && col !== "visible" && (
+                  {col !== "actions" && col !== "Khóa/Mở" && (
                     <ChevronsUpDown size={16} />
                   )}
                 </div>
@@ -42,8 +42,14 @@ const UserTable = ({ cols, data }: IDataTable) => {
             index={index}
             uuid={item.uuid}
             username={item.username}
-            // major={item.}
-            email={item.username}
+            expertname={item.expertname}
+            major={item.industry ? item.industry[0] : ""}
+            startday={item.startday}
+            endday={item.endday}
+            email={item.email}
+            is_active={item.is_active}
+            is_delete={item.is_delete}
+            type={userType}
           />
         ))}
       </tbody>

@@ -3,21 +3,21 @@ import { FolderKanban, Home, Lightbulb, User, UserCheck } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const sidebarItems = [
-  { icon: Home, name: "Dashboard", value: "dashboard", link: "/" },
-  { icon: Lightbulb, name: "Ideas", value: "idea", link: "/idea-management" },
+  { icon: Home, name: "Thống kê", value: "dashboard", link: "/" },
+  { icon: Lightbulb, name: "Ý tưởng", value: "idea", link: "/idea-management" },
   {
     icon: FolderKanban,
-    name: "Problems",
+    name: "Vấn đề",
     value: "problem",
     link: "/problem-management",
   },
   {
     icon: UserCheck,
-    name: "Experts",
+    name: "Chuyên gia",
     value: "expert",
     link: "/expert-management",
   },
-  { icon: User, name: "Users", value: "user", link: "/user-management" },
+  { icon: User, name: "Người dùng", value: "user", link: "/user-management" },
 ];
 
 export default function Sidebar() {

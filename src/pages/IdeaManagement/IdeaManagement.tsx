@@ -6,22 +6,22 @@ import TableFilter from "~/components/TableFilter";
 import * as productService from "~/services/product.service";
 import type { IManaPage } from "~/common/types";
 import LoadingScreen from "~/layouts/component/LoadingScreen";
+import { useDebounce } from "~/hooks/useDebounce";
 
 const cols = [
-  "no. ",
-  "uuid",
-  "title",
-  "author",
-  "date",
-  "visible",
-  "field",
-  "actions",
+  "Stt",
+  "Mã ý tưởng",
+  "Tên ý tưởng",
+  "Tác giả",
+  "Ngày đăng",
+  "Trạng thái",
+  "Lĩnh vực",
+  "Thao tác",
 ];
 
 export default function IdeaManagement() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [fieldSelected, setFieldSelected] = useState("");
-  const [statusSelected, setStatusSelected] = useState("");
   const [searchText, setSearchText] = useState("");
   const [status, setStatus] = useState<string>("1:0");
   const [statusCheck, setStatusCheck] = useState<{
@@ -31,13 +31,18 @@ export default function IdeaManagement() {
 
   const newCols = useMemo(() => {
     if (status == "1:0" || status == "1:1") return cols;
-    const isAccepting = cols.filter((item) => item !== "visible");
+    const isAccepting = cols.filter((item) => item !== "Trạng thái");
     return isAccepting;
   }, [status]);
+
+  const searchDebounce = useDebounce(searchText, 500);
 
   const params = {
     is_active: statusCheck.is_active,
     is_delete: statusCheck.is_delete,
+    page: currentPage,
+    industry: fieldSelected,
+    ideasname: searchDebounce,
   };
 
   const { data, isLoading } = useQuery({
@@ -67,19 +72,17 @@ export default function IdeaManagement() {
   return (
     <div className="mx-auto max-w-5xl">
       <div className="text-center mt-10">
-        <h1 className="font-semibold text-2xl">Ideas Management</h1>
+        <h1 className="font-semibold text-2xl">Quản lý ý tưởng</h1>
         <p className="font-medium text-xs opacity-50">
-          Organize, Prioritize, and Execute Ideas Effectively
+          Tổ chức và triển khai ý tưởng một cách hiệu quả
         </p>
       </div>
       <div className="mt-5">
         <TableFilter
           fieldSelected={fieldSelected}
-          statusSelected={statusSelected}
           searchText={searchText}
           status={status}
           setFieldSelected={setFieldSelected}
-          setStatusSelected={setStatusSelected}
           setStatus={setStatus}
           setSearchText={setSearchText}
         />

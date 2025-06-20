@@ -1,4 +1,4 @@
-import { BellRing, History, LogOut } from "lucide-react";
+import { History, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -6,12 +6,6 @@ export default function Header() {
     <div className="h-[60px] shadow-2xl border-b-1 flex items-center justify-end">
       <div className="flex gap-10 mr-10">
         <div className="flex gap-3">
-          <div
-            title="Notification"
-            className="bg-[#D5E5F3] p-2.5 cursor-pointer rounded-lg group"
-          >
-            <BellRing className="text-[#2D9CDB] group-hover:text-blue-300 duration-300" />
-          </div>
           <Link
             to={"/transaction-history"}
             title="Transaction history"
@@ -30,10 +24,10 @@ export default function Header() {
         <div className="flex gap-2 items-center">
           <div>
             <span>Xin chào, </span>
-            <span className="font-bold">Viết Tuấn </span>
+            <span className="font-bold">Admin </span>
           </div>
           <div className="rounded-full h-10 w-10 overflow-hidden">
-            <img src="/AvtTuan.jpg" alt="avatar" className="object-cover" />
+            <img src="/no-user.png" alt="avatar" className="object-cover" />
           </div>
         </div>
       </div>

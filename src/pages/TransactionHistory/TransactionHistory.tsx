@@ -42,44 +42,50 @@ export default function TransactionHistory() {
         <LoadingScreen className="!h-[80vh]" />
       ) : (
         <>
-          <div className="bg-white shadow rounded-lg overflow-hidden">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100 text-left">
-                <tr>
-                  <th className="px-4 py-2">ID</th>
-                  <th className="px-4 py-2">Description</th>
-                  <th className="px-4 py-2">Transactor</th>
-                  <th className="px-4 py-2">Date</th>
-                  <th className="px-4 py-2 text-right">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {itemsData.map((tx, index) => (
-                  <tr key={index} className="border-t">
-                    <td className="px-4 py-2">{index + 1}</td>
-                    <td className="px-4 py-2">{tx.description}</td>
-                    <td className="px-4 py-2">{tx.customer_name}</td>
-                    <td className="px-4 py-2">
-                      {convertIsoDate(tx.created_at)}
-                    </td>
-                    <td
-                      className={`px-4 py-2 text-right ${
-                        tx.amount < 0 ? "text-red-500" : "text-green-600"
-                      }`}
-                    >
-                      {tx.amount.toLocaleString("vi-VN")}₫
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <PaginationBar
-            currentPage={currentPage}
-            itemsPerPage={data?.limit ? data?.limit : 0}
-            setCurrentPage={setCurrentPage}
-            totalItems={data?.total ? data?.total : 0}
-          />
+          {itemsData === null || itemsData.length === 0 ? (
+            <div>Chưa có giao dịch nào</div>
+          ) : (
+            <>
+              <div className="bg-white shadow rounded-lg overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-100 text-left">
+                    <tr>
+                      <th className="px-4 py-2">ID</th>
+                      <th className="px-4 py-2">Description</th>
+                      <th className="px-4 py-2">Transactor</th>
+                      <th className="px-4 py-2">Date</th>
+                      <th className="px-4 py-2 text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {itemsData.map((tx, index) => (
+                      <tr key={index} className="border-t">
+                        <td className="px-4 py-2">{index + 1}</td>
+                        <td className="px-4 py-2">{tx.description}</td>
+                        <td className="px-4 py-2">{tx.customer_name}</td>
+                        <td className="px-4 py-2">
+                          {convertIsoDate(tx.created_at)}
+                        </td>
+                        <td
+                          className={`px-4 py-2 text-right ${
+                            tx.amount < 0 ? "text-red-500" : "text-green-600"
+                          }`}
+                        >
+                          {tx.amount.toLocaleString("vi-VN")}₫
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <PaginationBar
+                currentPage={currentPage}
+                itemsPerPage={data?.limit ? data?.limit : 0}
+                setCurrentPage={setCurrentPage}
+                totalItems={data?.total ? data?.total : 0}
+              />
+            </>
+          )}
         </>
       )}
     </div>

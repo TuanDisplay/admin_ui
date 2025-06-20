@@ -15,25 +15,30 @@ export const dataField = [
   { id: 13, name: "Tài chính & Đầu tư", value: "finance" },
 ];
 
+export const dataMemberType = [
+  { id: 0, name: "Thường dân", value: "free" },
+  { id: 1, name: "Quý tộc", value: "premium" },
+];
+
 export const dataVisible = [
-  { id: 0, name: "Hiện", value: "1" },
-  { id: 1, name: "Ẩn", value: "0" },
+  { id: 0, name: "Hiện", value: "1:0" },
+  { id: 1, name: "Ẩn", value: "1:1" },
 ];
 
 export const dataAccept = [
   {
     id: 0,
-    name: "Ý tưởng đã duyệt",
+    name: "Sản phẩm đã duyệt",
     value: "1:0",
   },
   {
     id: 1,
-    name: "Ý tưởng chờ duyệt",
+    name: "Sản phẩm chờ duyệt",
     value: "0:0",
   },
   {
     id: 2,
-    name: "Ý tưởng bị ẩn",
+    name: "Sản phẩm bị ẩn",
     value: "1:1",
   },
 ];

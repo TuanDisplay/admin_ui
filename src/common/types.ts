@@ -38,8 +38,13 @@ export interface IUserManaPage {
 export interface IUserMana {
   uuid: string;
   username: string;
+  expertname: string;
+  email: string;
   is_active: number;
   is_delete: number;
+  industry?: string[];
+  startday?: string;
+  endday?: string;
 }
 
 // history

@@ -18,15 +18,15 @@ const ProductTable = ({ cols, data, productType }: IDataTable) => {
             return (
               <th
                 key={index}
-                className="p-2 capitalize text-left font-normal text-sm"
+                className="p-2 capitalize text-left font-normal text-sm text-nowrap"
               >
                 <div
                   className={clsx("flex items-center justify-between", {
-                    "justify-center": col == "actions" || col == "visible",
+                    "justify-center": col == "Thao tác" || col == "Trạng thái",
                   })}
                 >
                   {col}
-                  {col !== "actions" && col !== "visible" && (
+                  {col !== "Thao tác" && col !== "Trạng thái" && (
                     <ChevronsUpDown size={16} />
                   )}
                 </div>
