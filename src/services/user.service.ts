@@ -7,7 +7,7 @@ interface IUserParams {
   start_day?: string;
   username?: string;
   expertname?: string;
-  industry: string;
+  industry?: string;
 }
 
 //customer
